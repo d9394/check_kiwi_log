@@ -5,6 +5,7 @@ do
   echo "Access Log In: $accessfile " >> /tmp/access_kiwi.log; #打印文件名字
   cat $accessfile >> /tmp/access_kiwi.log;    #输出文件内容
   echo ---------- >> /tmp/access_kiwi.log;     #空行
+  cat /dev/null > $accessfile
 done
 
 get_ip=$(egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' /tmp/access_kiwi.log | sort -u)
@@ -23,7 +24,3 @@ echo "TO:aaaaaa@163.com";
 echo "Subject: kiwi_access_log";
 cat /tmp/access_kiwi.log 
 ) | ssmtp -v aaaaaa@163.com
-
-cat /dev/null > /var/log/nginx/access_8073.log
-cat /dev/null > /var/log/nginx/access_8074.log
-cat /dev/null > /var/log/nginx/access_8075.log
